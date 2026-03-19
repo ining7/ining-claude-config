@@ -40,4 +40,10 @@ if [ -d "$SCRIPT_DIR/commands" ] && [ "$(ls -A "$SCRIPT_DIR/commands" 2>/dev/nul
     done
 fi
 
+# Patches - mcp-chrome-bridge multi-session fix
+if command -v mcp-chrome-bridge &>/dev/null; then
+    echo "Applying mcp-chrome-bridge multi-session patch..."
+    bash "$SCRIPT_DIR/patches/mcp-chrome-bridge/patch-multi-session.sh"
+fi
+
 echo "Done."

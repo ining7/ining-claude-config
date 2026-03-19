@@ -21,7 +21,7 @@ Pass the content to review as arguments:
 Run the review using `claude -p` in print mode. Construct the prompt as follows:
 
 ```bash
-claude -p "You are a senior code reviewer. Review the following content and provide feedback.
+claude -p "You are a senior code reviewer. Review the following content and provide feedback. You MUST respond entirely in Chinese (简体中文).
 
 ## Review Checklist
 
