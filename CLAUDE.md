@@ -48,17 +48,3 @@ curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:12306/ping
 
 **Prevention:** If MCP fails in a session, do not try to fix it in the same session. Start a new Claude Code session after ensuring the bridge is healthy.
 
-# Plan Mode Rules
-
-When in Plan Mode, before exiting plan mode (ExitPlanMode), you MUST follow this review cycle:
-
-1. Use the `/code-review` skill to send the current plan to an independent Claude instance for review
-2. Include the full plan content as the argument
-3. Present the review feedback to the user clearly, separating:
-   - MUST-FIX issues (with reasons)
-   - Suggestions (optional improvements)
-4. Ask the user how to proceed:
-   - Revise the plan based on feedback → make changes and go back to step 1
-   - Proceed as-is → ExitPlanMode
-   - Partially adopt → user specifies which items to address, revise accordingly, then go back to step 1
-5. Only ExitPlanMode when the user explicitly approves

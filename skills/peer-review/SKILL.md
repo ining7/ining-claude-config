@@ -1,19 +1,34 @@
 ---
-name: code-review
-description: Launches a separate Claude instance to perform systematic code review on a plan or code changes. Use for getting an independent second opinion before finalizing implementation.
+name: peer-review
+description: Launches a separate Claude instance as an independent reviewer for plans or code changes. Use when the task involves significant architectural decisions, complex logic, security-sensitive code, or when the user explicitly requests a review. Do NOT use for trivial changes, simple bug fixes, or straightforward implementations.
 allowed-tools: Bash(claude *)
 ---
 
-# Code Review
+# Peer Review
 
-Launches an independent Claude instance to review the current plan or code changes.
+Launches an independent Claude instance to review the current plan or code changes, providing a "second pair of eyes" perspective.
+
+## When to Use
+
+Use this skill when:
+- The task involves **significant architectural or design decisions**
+- The code touches **security-sensitive** areas (auth, crypto, permissions, input handling)
+- The implementation has **complex logic** that could have subtle bugs (concurrency, memory management, state machines)
+- **Multiple files or modules** are being changed in a coordinated way
+- The user **explicitly requests** a review (e.g., `/peer-review`)
+
+Do NOT use when:
+- The change is a simple bug fix, typo, or config tweak
+- The implementation is straightforward with no ambiguity
+- Only documentation or comments are being changed
+- The user has not asked for a review and the change is low-risk
 
 ## Usage
 
 Pass the content to review as arguments:
 
 ```
-/code-review <plan or code description>
+/peer-review <plan or code description>
 ```
 
 ## Execution
